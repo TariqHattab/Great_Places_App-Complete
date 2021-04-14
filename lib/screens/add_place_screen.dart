@@ -26,6 +26,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
   void _onSaveImage() {
     if (_titleController.text.isEmpty || _imageTaken == null) {
+      print(_imageTaken);
       print('whops');
       return;
     }

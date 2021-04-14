@@ -20,7 +20,10 @@ class _ImageInputState extends State<ImageInput> {
     final picker = ImagePicker();
 
     var fileImage =
-        await picker.getImage(source: ImageSource.camera, maxWidth: 1300);
+        await picker.getImage(source: ImageSource.camera, maxWidth: 600);
+    if (fileImage == null) {
+      return;
+    }
 
     setState(() {
       _storedImage = File(fileImage.path);
@@ -28,7 +31,7 @@ class _ImageInputState extends State<ImageInput> {
 
     final appDir = await syspath.getApplicationDocumentsDirectory();
     final filename = path.basename(fileImage.path);
-    final savedImage = _storedImage.copy('${appDir.path}/$filename');
+    final savedImage = await _storedImage.copy('${appDir.path}/$filename');
     widget._onImageTaken(savedImage);
   }
 
@@ -49,7 +52,8 @@ class _ImageInputState extends State<ImageInput> {
           child: _storedImage != null
               ? Image.file(
                   _storedImage,
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
                 )
               : Text('No image was taken', textAlign: TextAlign.center),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:great_places_app/helpers/db_helper.dart';
 import 'package:great_places_app/providers/great_places_providers.dart';
 import 'package:great_places_app/screens/add_place_screen.dart';
 import 'package:provider/provider.dart';
@@ -18,18 +19,34 @@ class PlacesListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Consumer<GreatPlaces>(
-        builder: (ctx, gp, ch) => gp.items.isEmpty
-            ? ch
-            : ListView.builder(
-                itemCount: gp.items.length,
-                itemBuilder: (ctx2, index) {
-                  return ListTile(title: Text(gp.items[index].title));
-                }),
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      body: FutureBuilder(
+          future: Provider.of<GreatPlaces>(context, listen: false)
+              .fetchAndSetPlaces(),
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Consumer<GreatPlaces>(
+                builder: (ctx, gp, ch) => gp.items.isEmpty
+                    ? ch
+                    : ListView.builder(
+                        itemCount: gp.items.length,
+                        itemBuilder: (ctx2, index) {
+                          return ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    FileImage(gp.items[index].image),
+                              ),
+                              title: Text(gp.items[index].title));
+                        }),
+                child: Center(
+                  child: Text("no places added yet start adding places now"),
+                ),
+              );
+            }
+          }),
     );
   }
 }
