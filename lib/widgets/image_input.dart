@@ -2,8 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspath;
 
 class ImageInput extends StatefulWidget {
+  final Function _onImageTaken;
+  ImageInput(this._onImageTaken);
+
   @override
   _ImageInputState createState() => _ImageInputState();
 }
@@ -15,11 +20,16 @@ class _ImageInputState extends State<ImageInput> {
     final picker = ImagePicker();
 
     var fileImage =
-        await picker.getImage(source: ImageSource.camera, maxWidth: 600);
+        await picker.getImage(source: ImageSource.camera, maxWidth: 1300);
 
     setState(() {
       _storedImage = File(fileImage.path);
     });
+
+    final appDir = await syspath.getApplicationDocumentsDirectory();
+    final filename = path.basename(fileImage.path);
+    final savedImage = _storedImage.copy('${appDir.path}/$filename');
+    widget._onImageTaken(savedImage);
   }
 
   @override
@@ -37,7 +47,10 @@ class _ImageInputState extends State<ImageInput> {
           ),
           alignment: Alignment.center,
           child: _storedImage != null
-              ? Image.file(_storedImage)
+              ? Image.file(
+                  _storedImage,
+                  fit: BoxFit.contain,
+                )
               : Text('No image was taken', textAlign: TextAlign.center),
         ),
         SizedBox(
