@@ -24,6 +24,10 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>we we take apicture1 wo wa</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>we we take locaation1 wo wa</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>we we take location2 wo wa</string>
 	<key>NSCameraUsageDescription</key>
 	<string>we we take apicture2 wo wa</string>
 	<key>NSMicrophoneUsageDescription</key>
