@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:great_places_app/helpers/db_helper.dart';
 import 'package:great_places_app/providers/great_places_providers.dart';
 import 'package:great_places_app/screens/add_place_screen.dart';
+import 'package:great_places_app/screens/place_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class PlacesListScreen extends StatelessWidget {
@@ -35,11 +36,20 @@ class PlacesListScreen extends StatelessWidget {
                         itemCount: gp.items.length,
                         itemBuilder: (ctx2, index) {
                           return ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage:
-                                    FileImage(gp.items[index].image),
-                              ),
-                              title: Text(gp.items[index].title));
+                            leading: CircleAvatar(
+                              backgroundImage: FileImage(gp.items[index].image),
+                            ),
+                            title: Text(gp.items[index].title),
+                            subtitle: Text(
+                              gp.items[index].location.address,
+                              softWrap: false,
+                            ),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                  PlaceDetailScreen.routeName,
+                                  arguments: gp.items[index].id);
+                            },
+                          );
                         }),
                 child: Center(
                   child: Text("no places added yet start adding places now"),
