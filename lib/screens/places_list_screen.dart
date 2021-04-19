@@ -32,25 +32,36 @@ class PlacesListScreen extends StatelessWidget {
               return Consumer<GreatPlaces>(
                 builder: (ctx, gp, ch) => gp.items.isEmpty
                     ? ch
-                    : ListView.builder(
-                        itemCount: gp.items.length,
-                        itemBuilder: (ctx2, index) {
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: FileImage(gp.items[index].image),
-                            ),
-                            title: Text(gp.items[index].title),
-                            subtitle: Text(
-                              gp.items[index].location.address,
-                              softWrap: false,
-                            ),
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  PlaceDetailScreen.routeName,
-                                  arguments: gp.items[index].id);
-                            },
-                          );
-                        }),
+                    : RefreshIndicator(
+                        onRefresh: () {
+                          return Provider.of<GreatPlaces>(context,
+                                  listen: false)
+                              .fetchAndSetPlaces();
+                        },
+                        child: ListView.builder(
+                            itemCount: gp.items.length,
+                            itemBuilder: (ctx2, index) {
+                              return ListTile(
+                                leading: Hero(
+                                  tag: gp.items[index].id,
+                                  child: CircleAvatar(
+                                    backgroundImage:
+                                        FileImage(gp.items[index].image),
+                                  ),
+                                ),
+                                title: Text(gp.items[index].title),
+                                subtitle: Text(
+                                  gp.items[index].location.address,
+                                  softWrap: false,
+                                ),
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      PlaceDetailScreen.routeName,
+                                      arguments: gp.items[index].id);
+                                },
+                              );
+                            }),
+                      ),
                 child: Center(
                   child: Text("no places added yet start adding places now"),
                 ),

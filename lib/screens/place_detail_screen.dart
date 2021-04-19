@@ -15,13 +15,16 @@ class PlaceDetailScreen extends StatelessWidget {
       appBar: AppBar(title: Text(place.title)),
       body: Column(
         children: [
-          Container(
-            height: 230,
-            width: double.infinity,
-            child: Image.file(
-              place.image,
-              fit: BoxFit.cover,
+          Hero(
+            tag: place.id,
+            child: Container(
+              height: 230,
               width: double.infinity,
+              child: Image.file(
+                place.image,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
           SizedBox(
