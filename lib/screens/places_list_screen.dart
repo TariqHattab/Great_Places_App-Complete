@@ -10,7 +10,7 @@ class PlacesListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('whow'),
+        title: Text('Your Places'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -63,7 +63,7 @@ class PlacesListScreen extends StatelessWidget {
                             }),
                       ),
                 child: Center(
-                  child: Text("no places added yet start adding places now"),
+                  child: Text("No places added yet start adding places now!"),
                 ),
               );
             }

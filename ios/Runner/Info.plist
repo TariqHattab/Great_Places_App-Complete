@@ -23,15 +23,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>we we take apicture1 wo wa</string>
+	<string>We need to take a picture!</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>we we take locaation1 wo wa</string>
+	<string>Need to get your location!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>we we take location2 wo wa</string>
+	<string>Need to get your location!</string>
 	<key>NSCameraUsageDescription</key>
-	<string>we we take apicture2 wo wa</string>
+	<string>We need to take a picture!</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>we we take apicture3 wo wa</string>
+	<string>Need to use your mic!</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

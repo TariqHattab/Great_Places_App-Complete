@@ -46,7 +46,7 @@ class PlaceDetailScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('View on map')),
+              child: Text('View on Map')),
           SizedBox(
             height: 10,
           ),
