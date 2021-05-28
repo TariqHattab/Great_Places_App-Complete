@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places_app/helpers/location_helper.dart';
 import 'package:great_places_app/screens/map_screen.dart';
 import 'package:location/location.dart';

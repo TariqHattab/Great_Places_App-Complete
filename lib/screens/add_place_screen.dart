@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:great_places_app/helpers/location_helper.dart';
 import 'package:great_places_app/models/place.dart';
 import 'package:great_places_app/providers/great_places_providers.dart';
 import 'package:great_places_app/widgets/image_input.dart';
@@ -36,8 +35,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     if (_titleController.text.isEmpty ||
         _imageTaken == null ||
         _location == null) {
-      print(_imageTaken);
-      print('whops');
       return;
     }
     Provider.of<GreatPlaces>(context, listen: false)
@@ -58,7 +55,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
         ],
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
